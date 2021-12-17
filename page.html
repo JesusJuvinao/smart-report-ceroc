@@ -1,0 +1,1318 @@
+<!DOCTYPE html><html><head>
+    <title>Client Search</title>
+    <link rel="icon" type="image/png" href="/Content/images/favicon.png">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Content/css/jquery-ui.css" type="text/css" rel="stylesheet">
+    <link href="/Content/css/calendar.css" rel="stylesheet">
+    <link href="/Content/css/Timepicker.css" rel="stylesheet">
+    <link href="/Content/css/style.css" rel="stylesheet">
+    <link href="/Content/css/responsive.css" rel="stylesheet">
+    <script src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/js/twk-main.js" charset="UTF-8" crossorigin="*"></script><script src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/js/twk-vendor.js" charset="UTF-8" crossorigin="*"></script><script src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/js/twk-chunk-vendors.js" charset="UTF-8" crossorigin="*"></script><script src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/js/twk-chunk-common.js" charset="UTF-8" crossorigin="*"></script><script src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/js/twk-runtime.js" charset="UTF-8" crossorigin="*"></script><script src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/js/twk-app.js" charset="UTF-8" crossorigin="*"></script><script async="" src="https://embed.tawk.to/5ae19fcd5f7cdf4f0533a1b9/1etp7i5br" charset="UTF-8" crossorigin="*"></script><script src="/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js"></script>
+    <script src="/Scripts/PTSApp/ptscommon.js"></script>
+    <script src="/Scripts/PTSApp/settings.js"></script>
+    <script src="/Scripts/PTSApp/accountScript.js"></script>
+    <script src="/Scripts/PTSApp/ajaxservice.js"></script>
+    <script src="/Scripts/PTSApp/genericservices.js"></script>
+    
+    
+    
+    <!---- Js file include-->
+
+    <script type="text/javascript" src="/Scripts/jquery-ui-datepicker.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="/Scripts/custom.js"></script>
+    <script src="/Scripts/inputmask/jquery.mask.min.js"></script>
+
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDrAc4U2IHvODeDt8IHVMLPcvNAGK9Fhx4&amp;sensor=false"></script>
+
+    <!--Start of Tawk.to Script-->
+   <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+           // s1.src = "../Scripts/PTSApp/ptschat.js";
+            //s1.src = 'https://embed.tawk.to/5ae19fcd5f7cdf4f0533a1b9/1etokb6kf';
+            s1.src='https://embed.tawk.to/5ae19fcd5f7cdf4f0533a1b9/1etp7i5br';
+
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+<style>
+    .messagesAlert {
+        z-index: 99999;
+    }
+</style><script type="text/javascript" charset="UTF-8" src="https://maps.google.com/maps-api-v3/api/js/47/3/intl/en_gb/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.google.com/maps-api-v3/api/js/47/3/intl/en_gb/util.js"></script></head>
+
+
+<body class="test fixed-footer">
+    <div class="loading" style="display: block;">
+        <img src="/Content/images/spinner_animated.gif" alt="Please wait loading">
+    </div>
+    <!--start css success message -->
+    
+    <div class="messagesAlert">
+        <div class="alertBox" style="background-color: rgba(74, 193, 142, 0.8);">
+            <figure><img src="/Content/images/icons/awesome-check-circle.svg" alt="awesome-check-circle"></figure>
+            <span id="successtext"></span>
+        </div>
+    </div>
+
+    <div class="messagesAlert hidealert">
+        <div class="alertBox failed" id="failedBox" style="background-color: #FF7B7B;">
+            <figure><img src="/Content/images/icons/cross-alert.svg" alt="awesome-check-circle"></figure>
+            <span id="errortext"></span>
+        </div>
+    </div>
+
+    <!--end css success message -->
+
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="logo-wrapper">
+                        <a href="/Member/Index" class="logo"><img src="https://pts-live.s3.eu-west-2.amazonaws.com/ApplicationFiles/ItineraryMemberSetting/5087/gphnew_23Dec20022933PM.jpg" alt="Protected Travel Services"></a>
+
+                </div>
+                
+                <div class="nav">
+                    <ul class="nav-menu">
+                        <li class="subli">
+                            <a href="javascript:void(0)" data-activemenun="client" class="active" title="Clients">
+                                Clients
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11.111" height="6.417" viewBox="0 0 11.111 6.417"><path style="fill:#2580e9;stroke:#2580e9;stroke-linecap:round;" d="M9.878.122a.416.416,0,0,0-.589,0L5,4.411.711.122A.417.417,0,0,0,.122.711L4.705,5.295a.416.416,0,0,0,.589,0L9.878.711A.416.416,0,0,0,9.878.122Z" transform="translate(0.555 0.5)"></path></svg>  
+                            </a>
+                            <ul class="custom_class">
+                                <li>
+                                    <a href="/client/ClientSearchView" title="Search Clients" data-menuname="client" class="active">
+                                        <h2>Search Clients</h2>
+                                        <p>Search clients including attendees on Guest Lists and payees.</p>
+                                    </a>
+                                </li>
+                                    <li>
+                                        <a href="/Client/ReassignClients" title="Re-Assign" data-menuname="client" class="active">
+                                            <h2>Re-Assign</h2>
+                                            <p>Re-Assign clients between users.</p>
+                                        </a>
+                                    </li>
+                                <li>
+
+                                    <a href="/client/addClientView" title="Add Client" data-menuname="client" class="active">
+                                        <h2>Add Client </h2>
+
+                                        <p>
+                                            Add a new client entry to the PTS system to stay organised with their enquiry and booking
+                                            with you.
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="/Client/GetNewClientsWithAssignedToUsers" data-menuname="client" title="New Clients" class="active">
+                                        <h2>New Clients </h2>
+
+                                        <p>View your new clients to contact and supply quotes and diarise.</p>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="/Member/IssueTicket" data-menuname="client" title="Image Settings" class="active">
+                                        <h2>Issue Tickets</h2>
+
+                                        <p>
+                                            View your clients that require tickets issuing.
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="subli">
+                            <a href="/Member/DiaryNotes" class="ValidateMenu">Diary</a>
+                            
+                        </li>
+                        <li class="subli">
+                            <a href="javascript:void(0)" class="supplierActive">Suppliers
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11.111" height="6.417" viewBox="0 0 11.111 6.417"><path style="fill:#2580e9;stroke:#2580e9;stroke-linecap:round;" d="M9.878.122a.416.416,0,0,0-.589,0L5,4.411.711.122A.417.417,0,0,0,.122.711L4.705,5.295a.416.416,0,0,0,.589,0L9.878.711A.416.416,0,0,0,9.878.122Z" transform="translate(0.555 0.5)"></path></svg>
+                                </a>
+                            <ul class="custom_class">
+                                <li>
+                                    <a href="/Client/ContractedSupplier" data-menuname="supplier" title="Accommodation">
+                                        <img src="/Content/images/icons/merchant-menu.svg" alt=" ">
+                                        <h2 style="color:#C52B96;">
+                                            Contracted Suppliers
+                                        </h2>
+                                        
+                                        
+
+                                        <p>Search Contracted Suppliers that either you or PTS have contracted with. View Agency agreements, contact details and Account information.</p>
+                                        
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Accommodation/SearchAccommodation" title="Accommodation">
+                                        <h2>Accommodation</h2>
+                                        
+                                        <p>Search and manage Accommodation providers you have in the PTS System.</p>
+                                    </a>
+                                </li>
+                                
+                                <li>
+
+                                    <a href="/Activities/ActivitySearch" title="Activities">
+                                        <h2>Activities</h2>
+
+                                        
+                                        <p>Search and manage Activity suppliers you have in the PTS System.</p>
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="/Flight/Flights" title="Flights">
+                                        <h2>Flights </h2>
+                                        
+
+                                        
+                                        <p>Search and manage Flight providing suppliers you have in the PTS System.</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/TransportSupplier/SearchTransport" title="Transport"><h2>Transport</h2><p>Search Transfer and Car Hire suppliers to book.</p></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="subli">
+                            <a href="javascript:void(0)"> Accounts <svg xmlns="http://www.w3.org/2000/svg" width="11.111" height="6.417" viewBox="0 0 11.111 6.417"><path style="fill:#2580e9;stroke:#2580e9;stroke-linecap:round;" d="M9.878.122a.416.416,0,0,0-.589,0L5,4.411.711.122A.417.417,0,0,0,.122.711L4.705,5.295a.416.416,0,0,0,.589,0L9.878.711A.416.416,0,0,0,9.878.122Z" transform="translate(0.555 0.5)"></path></svg></a>
+                            <ul class="custom_class">
+                                    <li>
+                                        <a href="/TravelMemberAccount/AccountOverview" title="Overview">
+                                            <h2>Overview</h2>
+                                            <p>An overview of your account balance and details.</p>
+                                        </a>
+                                    </li>
+                                <li>
+                                    <a href="/TravelMemberAccount/PaymentDue" title="Payments Due">
+                                        <h2>Payments Due</h2>
+                                        <p>View all Clients that are due to make payments to you. </p>
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a href="/Client/Transactions" title="Transactions">
+                                        <h2>Transactions</h2>
+                                        <p>This is an overview of your credit and debit transactions on the system.</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/TravelMemberAccount/PaymentsOutstanding" title="Payments Due">
+                                        <h2>Payments Outstanding</h2>
+                                        <p>View all Clients that have payments outstanding,</p>
+                                    </a>
+                                </li>
+
+
+                                    <li>
+                                        <a href="/TravelMemberAccount/ProfitClaims" title="Profit Claims">
+                                            <h2>Profit Claims</h2>
+                                            <p>View and claim profit for your bookings.</p>
+                                        </a>
+                                    </li>
+                                <li>
+                                    <a href="/Financial/Unassigned" title="Transactions">
+                                        <h2>Unassigned Credits</h2>
+                                        <p>View all credits that have credited and are yet to be assigned to a client.</p>
+                                    </a>
+                                </li>
+                                    <li>
+                                        <a href="/Financial/GetAllUnclaimed" title="Unclaimed Credits">
+                                            <h2>Unclaimed Credits</h2>
+                                            <p>View credits that have credited without a client reference and still to be assigned to a booking.</p>
+                                        </a>
+                                    </li>
+
+                                <li>
+                                    <a href="/TravelMemberAccount/AccountDebits" title="Debits">
+                                        <h2>Debits</h2>
+                                        <p>View all debits paid and pending on the system in all currencies.</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="subli">
+                            <a href="javascript:void(0)" class="memberActive"> Member <svg xmlns="http://www.w3.org/2000/svg" width="11.111" height="6.417" viewBox="0 0 11.111 6.417"><path style="fill:#2580e9;stroke:#2580e9;stroke-linecap:round;" d="M9.878.122a.416.416,0,0,0-.589,0L5,4.411.711.122A.417.417,0,0,0,.122.711L4.705,5.295a.416.416,0,0,0,.589,0L9.878.711A.416.416,0,0,0,9.878.122Z" transform="translate(0.555 0.5)"></path></svg></a>
+                            <ul class="custom_class">
+                                    <li>
+                                        <a href="/TravelReporting/BusinessReporting" title="Reporting">
+                                            <h2>Business Reporting</h2>
+                                            <p>Report function your business including client and supplier data.</p>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/TravelReporting/SupplierReporting" title="Reporting">
+                                            <h2>Supplier Reporting</h2>
+                                            <p>Supplier Reporting function on your suppliers and payments through the PTS system.</p>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/Member/AssignEnquiry" title="Assign Enquiries">
+                                            <h2>Assign Enquiries</h2>
+                                            <p>Assign new enquiries to users on the PTS system.</p>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/TravelReporting/ClientReporting" title="Assign Enquiries">
+                                            <h2>Client Reporting</h2>
+                                            <p>Reporting Function for all your clients in the PTS system.</p>
+                                        </a>
+                                    </li>
+                                                                    <li>
+
+
+                                        <a href="/Member/PTSDownloads" title="Users">
+                                            <h2>PTS Downloads </h2>
+
+                                            <p>
+                                                Download your membership details including your agreement.
+                                            </p>
+                                        </a>
+                                    </li>
+                                                                                                    <li>
+
+                                        <a href="/Member/EmailTemplate" title="Email Templates">
+                                            <h2>Email Templates </h2>
+
+                                            <p>
+                                                Design,amend and create email templates for frequent use.
+                                            </p>
+                                        </a>
+                                    </li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <div class="header-secondary-nav mobile-hide">
+                    <ul>
+                        <li style="display:none;">
+
+                        </li>
+                        <li class="user-box">
+                                <a href="/Member/UserDetails" title=""><label style="font-weight:bold; font-size:x-large">S W</label>  Hello Stuart <img src="/Content/images/icons/header-arrow.svg" style="margin:0 0 0 7px;"></a>
+                            <ul>
+                                <li><a href="/Member/UserDetails"><img src="/Content/images/icons/dashboard/profile.svg">Profile</a></li>
+                                <li>
+                                    <a title="Logout" class="logout" href="javascript:;"><img src="/Content/images/icons/dashboard/power.svg"> Logout</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li><a data-class="add-passengerPopup"><img src="/Content/images/icons/dashboard/help.svg" class="open-lightbox" data-class="add-passengerPopup"></a></li>
+                        <li>
+                            
+                            <a href="/Member/ItinerarySettings"><img src="/Content/images/icons/dashboard/setting.svg"></a>
+                        </li>
+
+                    </ul>
+                </div>
+                
+                <a href="javascript:void(0)" class="menu-btn"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            </div>
+
+        </div>
+        <input type="hidden" name="hdnUserId" id="hdnUserId" value="stuart.wilson@smartaccountingonline.com">
+    </header>
+    <!-- End Header -->
+    <div class="custom-client-wrapper-new">
+        <div class="wrap-light-box">
+            <div class="overlay">
+            </div>
+            <div class="lb-container add-passengerPopup help-popup" style="margin-top: -295.5px;">
+                <div class="row ques-popup">
+                    <div class="heading-help">
+
+<h2 class="left-border" style="border-left:4px solid #3EB2FF !important">Help </h2>
+                        
+                        <div class="sample-buton">
+
+                        </div>
+                    </div>
+
+
+                    <div class="grid-box overview-link">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="help-pop-content">
+                                    <ul>
+                                        <li style="background: rgba(0, 151, 255, 0.05);"><div class="help-color-box" style="background: rgba(0, 151, 255, 1);"></div><span> Indicates that the data is Client related.</span></li>
+                                        <li style="background:rgba(88, 36, 132, 0.05)"><div class="help-color-box" style="background: rgba(88, 36, 132, 1);"></div><span> Indicates that the data is in related to Users Diary </span></li>
+                                        <li style="background:rgba(197, 43, 150, 0.05)"><div class="help-color-box" style="background:rgba(197, 43, 150, 1)"></div><span> Indicates that the page or data is in relation to either your Suppliers or the PTS Contracted Suppliers. </span></li>
+                                        <li style="background:rgba(255, 109, 106, 0.05)"><div class="help-color-box" style="background:rgba(255, 109, 106, 1)"></div><span> Indicates that the page or data or link is in relation to finances on the PTS system. </span></li>
+                                        <li style="background:rgba(245, 164, 54, 0.05)"><div class="help-color-box" style="background:rgba(245, 164, 54, 1)"></div><span> Indicates that the page or data is in relation to a Member Setting. </span></li>
+                                        <li style="background:rgba(255, 239, 12, 0.05)"><div class="help-color-box" style="background:rgba(255, 239, 12, 1)"></div><span> Indicates that the data will be visible to your clients on their online itinerary. </span></li>
+                                        <li style="background:rgba(52, 195, 114, 0.05)"><div class="help-color-box" style="background:rgba(52, 195, 114, 1)"></div><span> Indicates that you can approve or update data in the PTS system. </span></li>
+                                    </ul>
+                                    <ul>
+                                        <li style="background: rgba(85, 110, 230, 0.05)">
+                                            <div class="help-color-box">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g transform="translate(0 -0.192)"><rect style="fill:#556ee6;opacity:0.1;" width="40" height="40" rx="5" transform="translate(0 0.192)"></rect><g transform="translate(9.5 11.067)"><path style="fill:#556ee6;" d="M24.044,4.429h3a.2.2,0,0,0,.2-.2h0a.93.93,0,0,0-.333-.71l-2.57-2.14a1.247,1.247,0,0,0-.687-.247h0a.246.246,0,0,0-.247.247V3.8A.638.638,0,0,0,24.044,4.429Z" transform="translate(-9.944 -0.004)"></path><path style="fill:#556ee6;" d="M15.558,3.792V1.125H11.192a1.07,1.07,0,0,0-1.067,1.067v11.2a1.07,1.07,0,0,0,1.067,1.067h8a1.07,1.07,0,0,0,1.067-1.067v-8.1h-3.2A1.5,1.5,0,0,1,15.558,3.792Z" transform="translate(-2.958 0)"></path><path style="fill:#556ee6;" d="M6.233,16.692V5.625H5.567A1.07,1.07,0,0,0,4.5,6.692V18.425a1.07,1.07,0,0,0,1.067,1.067H14.1a1.07,1.07,0,0,0,1.067-1.067v-.667H7.3A1.07,1.07,0,0,1,6.233,16.692Z" transform="translate(0 -2.367)"></path></g></g></svg>
+                                            </div>
+                                            <span> Click to copy your results or data to the clipboard to then paste into another application.</span>
+                                        </li>
+                                        <li style="background:rgba(80, 165, 241, 0.05)">
+                                            <div class="help-color-box"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g transform="translate(-639 -473)"><rect style="fill:#50a5f1;opacity:0.1;" width="40" height="40" rx="5" transform="translate(639 473)"></rect><path style="fill:#50a5f1;" d="M16.912,8.192H5.838a2.47,2.47,0,0,0-2.463,2.462v5.333H6.448v3.282H16.3V15.987h3.073V10.654A2.47,2.47,0,0,0,16.912,8.192Zm-1.844,9.846H7.683V13.115h7.385ZM16.3,4.5H6.448V7.577H16.3V4.5Z" transform="translate(647.625 481.5)"></path></g></svg></div>
+                                            <span> Click to print your results or data to a connected printer.</span>
+                                        </li>
+                                        <li style="background:rgba(244, 106, 106, 0.05)">
+                                            <div class="help-color-box"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g transform="translate(1302 -2599)"><rect style="fill:#f46a6a;opacity:0.1;" width="40" height="40" rx="5" transform="translate(-1302 2599)"></rect><g transform="translate(-1290 2611)"><path style="fill:#f46a6a;;" d="M4.824,17.5H4.5v.648h.324a.324.324,0,0,0,0-.648Z" transform="translate(-1.56 -6.067)"></path><path style="fill:#f46a6a;;" d="M9.986,17.5H9.5v1.943h.486a.16.16,0,0,0,.162-.162V17.662A.16.16,0,0,0,9.986,17.5Z" transform="translate(-3.294 -6.036)"></path><path style="fill:#f46a6a;;" d="M11.286,10.122A5.709,5.709,0,0,1,7.649,0H1.8A1.8,1.8,0,0,0,0,1.8V13.877a1.8,1.8,0,0,0,1.8,1.8h9.487a1.8,1.8,0,0,0,1.8-1.8V9.835a5.832,5.832,0,0,1-1.8.287ZM3.271,13.061H2.944v.816a.491.491,0,0,1-.981,0V10.939a.494.494,0,0,1,.491-.49h.818a1.306,1.306,0,1,1,0,2.612Zm4.58.163a1.149,1.149,0,0,1-1.145,1.143H5.725a.494.494,0,0,1-.491-.49V10.939a.494.494,0,0,1,.491-.49h.981a1.149,1.149,0,0,1,1.145,1.143Zm2.781-1.143a.49.49,0,1,1,0,.98H9.487v.816a.491.491,0,0,1-.981,0V11.592a1.145,1.145,0,0,1,1.145-1.143h.981a.49.49,0,1,1,0,.98H9.651a.163.163,0,0,0-.164.163v.49Z" transform="translate(0 0)"></path><path style="fill:#f46a6a;;" d="M4.371,8.742A4.371,4.371,0,1,1,8.742,4.371,4.376,4.376,0,0,1,4.371,8.742Zm-1.134-4.2h0L4.544,6.2l1.284-1.66H5.043V2.59H4.023V4.542Z" transform="translate(7.258 0)"></path></g></g></svg></div>
+                                            <span> Click to download your results or data as a .pdf file.</span>
+                                        </li>
+                                        <li style="background: rgba(0, 151, 255, 0.05);">
+                                            <div class="help-color-box">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"> <g transform="translate(0 -0.192)"><rect style="fill:#34c38f;opacity:0.1;" width="40" height="40" rx="5" transform="translate(0 0.192)"></rect><g transform="translate(1183 -2570.208)"><path style="fill:#34c38f;" d="M10.236,14.671h0L0,12.993V1.239L7.555,0a5.326,5.326,0,0,0-.8,4.181H6.527L5.429,5.93a5.4,5.4,0,0,0-.217.513H5.193a2.824,2.824,0,0,0-.207-.5L4,4.182H2.1L4.118,7.125l-2.2,2.943H3.771l1.194-1.9a2.679,2.679,0,0,0,.16-.411h.018a1.53,1.53,0,0,0,.139.394l1.191,1.918H8.319L6.189,7.1,7.283,5.56a5.47,5.47,0,0,0,2.953,2.512v6.6Z" transform="translate(-1171 2583.538)"></path><path style="fill:#34c38f;" d="M4.163,8.327A4.163,4.163,0,1,1,8.327,4.163,4.168,4.168,0,0,1,4.163,8.327Zm-1.08-4h0L4.328,5.908,5.551,4.326H4.8V2.467H3.831V4.326Z" transform="translate(-1163.327 2582.4)"></path></g></g></svg>
+                                            </div>
+                                            <span> Click to download &amp; save your results or data to a Microsoft Excel file. </span>
+                                        </li>
+                                        <li style="background: rgba(0, 151, 255, 0.05);">
+                                            <div class="help-color-box"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect style="fill:#2cd93e;opacity:0.1;" width="40" height="40" rx="5"></rect><path style="fill:#2cd93e;" d="M4.5,17.163V20.5H7.833l9.83-9.83L14.33,7.334ZM20.24,8.089a.885.885,0,0,0,0-1.253l-2.08-2.08a.885.885,0,0,0-1.253,0L15.281,6.383l3.333,3.333L20.24,8.089Z" transform="translate(7.5 7.504)"></path></svg></div>
+                                            <span> A green pencil indicates that you can click this to edit details on the page or a given field.</span>
+                                        </li>
+                                        <li style="background:rgba(197, 43, 150, 0.05)">
+                                            <div class="help-color-box">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="41" height="40" viewBox="0 0 41 40">
+                                                    <defs>
+                                                        <style>
+                                                            .a {
+                                                                fill: #fff;
+                                                                opacity: 0.7;
+                                                            }
+
+                                                            .b {
+                                                                font-size: 10px;
+                                                            }
+
+                                                            .b, .c {
+                                                                font-family: Roboto-Regular, Roboto;
+                                                                letter-spacing: -0.035em;
+                                                                text-decoration: underline;
+                                                            }
+
+                                                            .c {
+                                                                font-size: 14px;
+                                                            }
+                                                        </style>
+                                                    </defs>
+                                                    <rect class="a" width="40" height="40" rx="5"></rect>
+                                                    <text class="b" transform="translate(1 31)"><tspan x="0" y="0">Underline</tspan></text>
+                                                    <text class="c" transform="translate(16 17)"><tspan x="0" y="0">U</tspan></text>
+                                                </svg>
+                                            </div>
+                                            <span> A underline indicates that this is a link and will open another page or window.</span>
+                                        </li>
+                                         <li style="background:rgb(243, 246, 251);">
+                                             <div class="help-color-box" style="text-align: center;">
+                                                 
+                                                 <svg xmlns="http://www.w3.org/2000/svg" width="11.111" height="6.417" viewBox="0 0 11.111 6.417"><path style="fill:#2580e9;stroke:#2580e9;stroke-linecap:round;" d="M9.878.122a.416.416,0,0,0-.589,0L5,4.411.711.122A.417.417,0,0,0,.122.711L4.705,5.295a.416.416,0,0,0,.589,0L9.878.711A.416.416,0,0,0,9.878.122Z" transform="translate(0.555 0.5)"></path></svg>
+                                             </div>
+                                            <span>Accordian arrows indicate that this section can be expanded or collapsed</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="overview-box">
+                                    <h3>Overview Video</h3>
+                                            <a href="https://screencast-o-matic.com/watch/cri0XOViA49" target="_blank">Click to watch an overview video of this page</a>
+                                </div>
+                            </div>
+                            <div class="col-12 large-area">
+<p><strong>If you click on your company logo in the top left corner, this will take you back to your Home page where your Home Task columns are displayed. The Client Menu will give you access to Client related searches. The Diary Menu will link through to the your Diary page. The Suppliers Menu is there for you to search your Suppliers as well as PTS contracted suppliers. The Accounts Menu will allow you to view and manage your payments and transactions. The Member Menu allows quick access to Member related pages including Reporting tools depending on your User Privilege levels.<br><br></strong>This page allows you to search for a client or clients by any combination of the fields here. Your Search Results will display at the bottom of the page and you can click through to each Client via their client reference, first name or last name. You can also click through to the Money page of the relevant client by clicking on their Credits, Debits or Balance values. All information in the results can then be exported to&nbsp; Excel, PDF, printed or copied to clipboard if required.&nbsp;</p>                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <a href="javascript:void(0)" class="lb-close can-close"> <img src="/Content/images/icons/cross_light.svg" alt=" cross"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container part starts here -->
+    
+
+
+
+
+    
+<link href="/Scripts/dist/daterangepicker.min.css" rel="stylesheet">
+<style>
+    .pr-20 {
+        padding-right: 20px;
+    }
+</style>
+
+
+    <div class="container main-container">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="/Member/Index" title="Home">Home</a></li>
+                <li>&gt;</li>
+                <li><a title="Clients">Clients</a></li>
+                <li>&gt;</li>
+                <li><span>Client</span></li>
+            </ul>
+            
+        </div>
+        <div class="travel-search-client">
+            <!-- start Search client -->
+            <form id="clientSearchFrom" name="clientSearchFrom" method="post" novalidate="novalidate">
+                <div class="">
+                    <div class="min-container">
+                        <div class="heading">
+                            <h2 class="uppercase">Search Clients</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="grid-box search-client">
+                                    
+                                    <div class="row">
+                                        <div class="col-12 mmb-20">
+                                            <ul class="form-flex-wrapper">
+                                                <li><label>First Name</label><input type="text" class="input-wth-place checkValue valid" id="txtFirstname" value="" placeholder="" name="FirstName" onkeypress="return blockSpecialChar(event)"></li>
+                                                <li><label>Last Name</label><input type="text" class="input-wth-place checkValue valid" id="txtlastname" value="" placeholder="" name="LastName" onkeypress="return blockSpecialChar(event)"></li>
+                                                <li><label>Client Reference</label><input type="text" class="input-wth-place checkValue valid" id="txtClientReferenceNumber" value="" placeholder="" name="ClientReferenceNumber"></li>
+                                                <li>
+                                                    <label>Destination</label>
+                                                    <input type="text" class="input-wth-place checkValue" id="txtDestinationName" value="" placeholder="" name="Destination">
+
+
+                                                </li>
+                                                <li>
+                                                    <label>Client Status</label><select class="checkValue" id="ClientStatusId" name="ClientStatusId"><option value=""> </option>
+<option value="1">New</option>
+<option value="2">Quoted</option>
+<option value="3">Contacted</option>
+<option value="4">No Contact</option>
+<option value="5">Lost Lead</option>
+<option value="6">Booked</option>
+<option value="7">Cancelled</option>
+<option value="8">New Assigned</option>
+<option value="9">Completed</option>
+<option value="10">Postponed</option>
+</select>
+                                                </li>
+                                                <li><label>Phone Number</label><input type="text" class="input-wth-place checkValue valid" id="txtTelephone" value="" placeholder="" name="TelephoneNumber"></li>
+                                                <li>
+                                                    <label>Client type</label>
+                                                    <select class="checkValue" id="ClientTypeId" name="ClientTypeId"><option value=""></option>
+<option value="1">Activity</option>
+<option value="18">Flight Package</option>
+<option value="19">Golf</option>
+<option value="20">Group</option>
+<option value="25">Hotel Only</option>
+</select>
+                                                </li>
+
+                                                <li> <label>Email</label><input type="text" class="input-wth-place checkValue valid" id="txtEmail" value="" placeholder="" name="Email"></li>
+                                                <li>
+                                                    <label>Assigned User</label>
+                                                    <span><select class="checkValue" id="AssignedUser" name="AssignedUser"><option value=""></option>
+<option value="aa67ce3d-3c37-4551-b708-fabd6242a6b5">Heather Leathley</option>
+<option value="4cf9ed7d-30ac-4975-ab0e-44506919c739">Jacqui Cleaver</option>
+<option value="42a6692e-1f79-42da-9384-86175825fa7b">John Wilkin</option>
+<option value="eaec0b55-7307-432d-b7d7-c9aa2055e75e">Marcy Chivers</option>
+<option value="7A7B6866-4FB6-4CF9-826E-BBBF90570007">Nigel Burch</option>
+<option value="9ff07d6e-9b7a-4dbb-99da-55e91e078155">PTS Admin</option>
+<option value="BEC334B1-B4D1-4688-A08E-122DB0250972">Robert Thompson</option>
+<option value="922f65c3-db01-4404-b615-6d030b901556">Simon  Crawley</option>
+<option value="8e29d2a1-eb74-4295-8270-9bdf8767743f">Stuart Wilson</option>
+</select></span>
+
+                                                </li>
+                                                <li>
+                                                    <label>Payment Status</label>
+                                                    <span><select class="checkValue" id="PaymentStatusId" name="PaymentStatusId"><option value=""></option>
+<option value="1">All</option>
+<option value="3">Deposit Due</option>
+<option value="4">Deposit Paid</option>
+<option value="5">Balance Due</option>
+<option value="6">Balance Paid</option>
+<option value="9">Part-Payment</option>
+</select></span>
+
+                                                </li>
+                                                <li class="range-li">
+                                                    <label for="">Select Travel Date Range</label>
+                                                    <span class="flex-row">
+                                                        <input type="text" class="checkValue SpecificTravelRange hasDatepicker" value="" placeholder="" name="SpecificRangeFrom" id="txtSpecificRangeFrom" readonly="">
+                                                        <span>TO</span>
+                                                        <input type="text" class="checkValue SpecificTravelRange hasDatepicker" value="" placeholder="" name="SpecificRangeTo" id="txtSpecificRangeTO" readonly="">
+                                                    </span>
+                                                </li>
+                                                <li class="c-type">
+                                                    <label>Enquiry Type</label>
+                                                    <select class="checkValue" id="TravelTypeId" name="TravelTypeId"><option value=""></option>
+<option value="6">Repeat</option>
+<option value="7">Telephone</option>
+<option value="9">Website</option>
+<option value="11">Google</option>
+<option value="12">Referral</option>
+<option value="17">Email</option>
+<option value="35">Simon</option>
+<option value="36">Nigel</option>
+<option value="37">Heather</option>
+<option value="38">19th Hole</option>
+<option value="39">Regular</option>
+<option value="40">Eshot</option>
+<option value="41">Past</option>
+<option value="25">Acquaintance</option>
+<option value="49">ATB</option>
+<option value="46">Bing PPC</option>
+<option value="1">Blog</option>
+<option value="26">BNI</option>
+<option value="24">BNI referral</option>
+<option value="19">Chat</option>
+<option value="42">Cheap wedding Stuff</option>
+<option value="58">Deal Checker</option>
+<option value="63">Destination Yoga</option>
+<option value="33">Destinations</option>
+<option value="2">Digital</option>
+<option value="31">Direct Marketing</option>
+<option value="30">Existing Client</option>
+<option value="3">Facebook</option>
+<option value="44">Facebook Ads</option>
+<option value="54">Friends and Family</option>
+<option value="45">Google PPC</option>
+<option value="66">Hays Travel</option>
+<option value="50">Hen Party Ideas</option>
+<option value="59">Home</option>
+<option value="57">In Person</option>
+<option value="62">in:spa retreats</option>
+<option value="14">Instagram</option>
+<option value="43">Instagram Ads</option>
+<option value="27">Ladies Networking</option>
+<option value="29">Linkedin</option>
+<option value="22">Mailshot</option>
+<option value="32">Networking</option>
+<option value="4">Newsletter</option>
+<option value="10">Other</option>
+<option value="60">Others</option>
+<option value="55">Personal</option>
+<option value="20">PGA Professional</option>
+<option value="16">Phone Call</option>
+<option value="56">Post</option>
+<option value="5">Recommended</option>
+<option value="23">Repeat Client</option>
+<option value="21">Social Media</option>
+<option value="65">Staff Booking</option>
+<option value="34">Sudeley</option>
+<option value="13">Telelead</option>
+<option value="64">Test</option>
+<option value="61">The Healthy Holiday Company</option>
+<option value="52">Tripadvisor</option>
+<option value="48">Twitter</option>
+<option value="47">Twitter Ads</option>
+<option value="8">Walk in</option>
+<option value="53">Web Search</option>
+<option value="15">Website Form</option>
+<option value="28">WIBM</option>
+<option value="18">Word of Mouth</option>
+<option value="51">YS Website</option>
+</select>
+                                                    
+                                                </li>
+                                                <li class="blank">&nbsp;</li>
+                                                <li class="blank">&nbsp;</li>
+                                                
+
+                                                
+                                            </ul>
+                                            <ul class="form-flex-wrapper">
+                                                
+                                                <li class="flex-li">
+                                                    <label for="" class="right-text pr-20">Money</label>
+                                                    <label class="switch">
+                                                        <input type="checkbox" name="Money" id="chkMoney" class="chkMoney">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </li>
+                                                <li class="flex-li">
+                                                    <label for="" class="right-text pr-20">Guest List</label>
+                                                    <label class="switch">
+                                                        <input type="checkbox" name="GuestList" id="chkGuestList" class="chkGuestList">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </li>
+                                                <li class="flex-li">
+                                                    <label for="" class="right-text pr-20">
+                                                        Negative
+                                                        Balances
+                                                    </label>
+                                                    <label class="switch">
+                                                        <input type="checkbox" name="NegativeBalances" data-attr="NegativeBalance" id="NegativeBalance">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </li>
+                                                <li class="flex-li">
+                                                    <label for="" class="right-text pr-20">
+                                                        Issue Tickets
+                                                    </label>
+                                                    <label class="switch">
+                                                        <input type="checkbox" name="IssueTickets" data-attr="IssueTickets" id="IssueTickets">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </li>
+                                                <li class="flex-li"><button class="btn new-btn full-width" id="btnSearchClient" type="submit" value="">Search</button></li>
+                                            </ul>
+                                            <ul class="form-flex-wrapper">
+                                                <li>
+                                                    <label><b>TOGGLE Functions:</b></label>
+                                                </li>
+                                            </ul>
+                                            <div class="form-flex-wrapper">
+                                                <label style="color:black;font-size: 14px;">
+                                                    <b>Money -</b>
+                                                    This allows you to search a First Name or Last Name of any payees on the Money tabs of your Clients.
+                                                </label>
+                                            </div>
+                                            <div class="blank">&nbsp;</div>
+
+                                            <div class="form-flex-wrapper">
+                                                <label style="color:black;font-size: 14px;">
+                                                    <b>Guests -</b>
+                                                    If toggled ON, you can search the Guests Tabs of your Clients for any Guest entries that contain the First Name or Last Name criteria you search.
+                                                </label>
+                                            </div>
+                                            <div class="blank">&nbsp;</div>
+                                            <div class="form-flex-wrapper">
+                                                <label style="color:black;font-size: 14px;">
+                                                    <b>Negative Balances -</b>
+                                                    If this is toggled ON then the system will displlay results of your Clients with a Negative Balance as on their Money tab of the Client.
+                                                </label>
+                                            </div>
+                                            <div class="blank">&nbsp;</div>
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- End Search client -->
+                    <!-- start Search Results -->
+                    <div class="heading mt-30 search-result-client flex-heading">
+                        <h2>
+                            Search Results
+                        </h2>
+                        <ul class="flex-between action-btn" style="padding-right: 12px;">
+                            <li title="Copy To Clipboard">
+                                <a href="javascript:void(0)" onclick="copytoclipboard()">
+                                    <img src="/Content/images/icons/copy.png">
+                                </a>
+                            </li>
+                            <li title="Print">
+                                <a href="javascript:void(0)" onclick="printpage()">
+                                    <img src="/Content/images/icons/print.png">
+                            </a></li><a href="javascript:void(0)" onclick="printpage()">
+                            </a><li title="Download PDF"><a href="javascript:void(0)" onclick="printpage()">
+                                </a><a href="/Common/ExportToPDF" title="Download PDF">
+                                    <img src="/Content/images/icons/download_pdf.png">
+                                </a>
+                            </li>
+                            <li title="Download Excel">
+                                <a href="/Common/ExportToExcel" title="Download Excel">
+                                    <img src="/Content/images/icons/download_excel.png">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 search-result-table">
+                            <div class="grid-box">
+                                <div class="filter">
+                                    <input type="text" value="" class="search-icon" placeholder=" " id="search">
+                                    <label class="ml-10">Show Entries</label>
+                                    <select id="pagesize">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="100">100</option>
+                                        <option value="1000">1000</option>
+                                    </select>
+                                    <input type="hidden" value="100" name="pagesize" id="hdnPagesize">
+
+                                    <input type="hidden" value="1" name="PageNumber">
+                                </div>
+                                <div class="table-wrap" id="clientDetails"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end Search Results -->
+</form>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+
+    <script src="/Scripts/PTSApp/moment.min.js"></script>
+    <script src="/Scripts/dist/jquery.daterangepicker.min.js"></script>
+
+
+
+
+<script>
+    $(function () {
+        //$('#weeklyDatePicker').dateRangePicker({
+        //    inline: true,
+        //    container: '#dashboard-calender',
+        //    alwaysOpen: true,
+        //    singleMonth: true
+        //})
+
+        var currentYear = (new Date).getFullYear() + 5;
+        $('#txtSpecificRangeFrom').datepicker(
+            {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1850:" + currentYear + "",
+                firstDay: 1,
+                batchMode: 'day',
+                dateFormat: 'dd-M-yy',
+                showShortcuts: false,
+                startOfWeek: 'monday',// or monday
+                singleMonth: true
+
+            }).on('datepicker-first-date-selected', function (event, obj) {
+                /* This event will be triggered when first date is selected */
+                console.log('first-date-selected', obj);
+                // obj will be something like this:
+                // {
+                // 		date1: (Date object of the earlier date)
+                // }
+            })
+            .on('datepicker-change', function (event, obj) {
+                /* This event will be triggered when second date is selected */
+                console.log('change', obj);
+                // obj will be something like this:
+                // {
+                // 		date1: (Date object of the earlier date),
+                // 		date2: (Date object of the later date),
+                //	 	value: "2013-06-05 to 2013-06-07"
+                // }
+            })
+            .on('datepicker-apply', function (event, obj) {
+                /* This event will be triggered when user clicks on the apply button */
+                console.log('apply', obj);
+            })
+            .on('datepicker-close', function () {
+                /* This event will be triggered before date range picker close animation */
+                console.log('before close');
+            })
+            .on('datepicker-closed', function () {
+                /* This event will be triggered after date range picker close animation */
+                console.log('after close');
+            })
+            .on('datepicker-open', function () {
+                /* This event will be triggered before date range picker open animation */
+                console.log('before open');
+            })
+            .on('datepicker-opened', function () {
+                /* This event will be triggered after date range picker open animation */
+                console.log('after open');
+            });
+
+        var currentYear = (new Date).getFullYear() + 5;
+        $('#txtSpecificRangeTO').datepicker(
+            {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1850:" + currentYear + "",
+                firstDay: 1,
+                batchMode: 'day',
+                dateFormat: 'dd-M-yy',
+                showShortcuts: false,
+                startOfWeek: 'monday',// or monday
+                singleMonth: true
+
+            }).on('datepicker-first-date-selected', function (event, obj) {
+                /* This event will be triggered when first date is selected */
+                console.log('first-date-selected', obj);
+                // obj will be something like this:
+                // {
+                // 		date1: (Date object of the earlier date)
+                // }
+            })
+            //.on('datepicker-change', function (event, obj) {
+            //    /* This event will be triggered when second date is selected */
+            //    console.log('change', obj);
+            //    // obj will be something like this:
+            //    // {
+            //    // 		date1: (Date object of the earlier date),
+            //    // 		date2: (Date object of the later date),
+            //    //	 	value: "2013-06-05 to 2013-06-07"
+            //    // }
+            //})
+            .on('datepicker-apply', function (event, obj) {
+                /* This event will be triggered when user clicks on the apply button */
+                console.log('apply', obj);
+            })
+            .on('datepicker-close', function () {
+                /* This event will be triggered before date range picker close animation */
+                console.log('before close');
+            })
+            .on('datepicker-closed', function () {
+                /* This event will be triggered after date range picker close animation */
+                console.log('after close');
+            })
+            .on('datepicker-open', function () {
+                /* This event will be triggered before date range picker open animation */
+                console.log('before open');
+            })
+            .on('datepicker-opened', function () {
+                /* This event will be triggered after date range picker open animation */
+                console.log('after open');
+            }); 
+    });
+</script>
+<style>
+    .bootstrap-datetimepicker-widget .datepicker-days table tbody tr:hover {
+        background-color: #eee;
+    }
+</style>
+
+<script>
+    //code added for diary calender
+    $(function () {
+        //$('#date-range0').dateRangePicker({
+        //    inline: true,
+        //    container: '#date-range12-container',
+        //    alwaysOpen: true,
+        //    singleMonth: true
+        //})
+    });
+    //finish here
+    $(function () {
+        $('#pagesize').val(100);
+        $(document).on("change", ":checkbox.chkMoney", function () {
+            if ($(this).is(':checked')) {
+                if ($("#chkGuestList").is(':checked')) {
+                    $("#chkGuestList").prop('checked', false);
+                }
+            }
+
+        })
+        $(document).on("change", ":checkbox.chkGuestList", function () {
+            if ($(this).is(':checked')) {
+                if ($("#chkMoney").is(':checked')) {
+                    $("#chkMoney").prop('checked', false);
+                }
+            }
+
+        })
+        $("form[name='clientSearchFrom']").validate({
+
+            // Specify validation rules
+            rules: {
+                FirstName: {
+                    maxlength: 100
+                },
+                LastName: {
+                    maxlength: 100
+                },
+                TelephoneNumber: {
+
+                    maxlength: 100,
+                    minlength: 3,
+                    digits: true
+                },
+                Email: {
+                    //  required: true,
+                    maxlength: 100,
+                    //email: true
+                },
+                DestinationName: {
+                    maxlength: 100
+
+                },
+                ClientReferenceNumber: {
+                    digits: true
+
+                },
+            },
+            // Specify validation error messages
+            messages: {
+                FirstName: {
+                    maxlength: "Character limit on ‘First Name’ is to 100 characters"
+                },
+                LastName: {
+                    maxlength: "Character limit on ‘Last Name’ is to 100 characters"
+                },
+                TelephoneNumber: {
+                    maxlength: "Character limit on ‘Telephone Number’ is to 100 characters"
+                },
+                Email: {
+                    maxlength: "Character limit on ‘Email’ is to 100 characters",
+                    email: "Please enter valid email format"
+                },
+                DestinationName: {
+                    maxlength: "Character limit on ‘Destination Name’ is to 100 characters"
+                },
+
+            },
+
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                // e.preventDefault();
+                searchclient();
+
+            }
+        });
+
+    });
+</script>
+<script>
+
+    //To Enable Enter As A Submit
+    $(document).ready(function () {
+
+        if ($("#AssignedUser option").length == 2) {
+            $("select#AssignedUser")[0].selectedIndex = 1;
+        }
+        else if ($("#AssignedUser option").length > 2) {
+            $("select#AssignedUser")[0].selectedIndex = 0;
+        }
+
+
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+               $("#clientSearchFrom").submit();
+                return false;
+            }
+        });
+    });
+
+    $('.loading').show();
+    $("#search").keyup(function () {
+        _this = this;
+       // Show only matching TR, hide rest of them
+        $.each($("#tableClientList tbody tr"), function () {
+          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+                $(this).hide();
+            else
+                $(this).show();
+        });
+    });
+    //$('body').on('focus', "#txtSpecificRangeFrom", function () {
+    //    $(this).datepicker({
+    //        dateFormat: 'dd-M-yy',
+    //        changeMonth: true,
+    //        changeYear: true,
+    //        onSelect: function (date) {
+    //            var selectedDate = new Date(date);
+    //            var msecsInADay = 86400000;
+    //            var endDate = new Date(selectedDate.getTime() + msecsInADay);
+    //           $("#txtSpecificRangeTO").datepicker("option", "minDate", endDate);
+
+    //        },
+    //    });
+    //});
+    //$('body').on('focus', "#txtSpecificRangeTO", function () {
+    //    $(this).datepicker({
+    //        dateFormat: 'dd-M-yy',
+    //        minDate: ($('#txtSpecificRangeFrom').val() == "" || $('#txtSpecificRangeFrom').val() == undefined) ? new Date() : $('#txtSpecificRangeFrom').val(),
+    //        changeMonth: true,
+    //        changeYear: true,
+    //    });
+    //});
+
+
+
+    // this function is used for bind Payment Status
+
+    ajaxGetJsonWithToken("/Common/GetTravelDateRange", null, function (result) {
+        bindDropDownForStringValue("ddlTravelDate", JSON.parse(result).Result, "Date Range");
+        $('.loading').hide();
+    }, function () {
+
+        });
+
+
+    function searchclient(pageindex,pageSize) {
+        var valuesExists = false;
+        var allEmptyControls = $(".checkValue");
+        $.each(allEmptyControls, function (i, v) {
+            if ($(v).val() != '' && $(v).val() != 0) {
+                {
+                    valuesExists = true;
+                }
+            }
+        })
+
+        if (valuesExists) {
+            bindClientSearchDetail(pageindex, pageSize);
+        }
+        else {
+            errorMessage("Please enter at least one search criteria.");
+            document.getElementById("clientDetails").innerHTML = "";
+            $("#pagesize").attr('disabled', true);
+            return;
+        }
+    }
+    //bind the client detail
+    function bindClientSearchDetail(pageindex) {
+        $('.loading').show();
+        document.getElementById("clientDetails").innerHTML = "";
+
+        var formValues = {
+            FirstName: $("#txtFirstname").val(),
+            LastName: $("#txtlastname").val(),
+            TelephoneNumber: $("#txtTelephone").val(),
+            ClientReferenceNumber: $("#txtClientReferenceNumber").val(),
+            Email: $("#txtEmail").val(),
+            DestinationName: $("#txtDestinationName").val(),
+            AssignedUser: $("#AssignedUser").val(),
+            ClientStatusId: $("#ClientStatusId").val(),
+            PaymentStatusId: $("#PaymentStatusId").val(),
+            SpecificRangeFrom: $("#txtSpecificRangeFrom").val(),
+            SpecificRangeTo: $("#txtSpecificRangeTO").val(),
+            ClientTypeId: $("#ClientTypeId").val(),
+            TravelTypeId: $("#TravelTypeId").val(),
+            Money: $("#chkMoney").is(':checked'),
+            GuestList: $("#chkGuestList").is(':checked'),
+            PageSize: $('#hdnPagesize').val(),
+            NegativeBalance: $("#NegativeBalance").is(':checked'),
+            IssueTickets: $("#IssueTickets").is(':checked'),
+
+        };
+        if (pageindex) {
+            formValues.PageIndex = pageindex;
+        }
+
+
+        ajaxPostJsonWithToken("/Client/GetSearchClientDetailinclientsearch", formValues, function (result) {
+            
+            $('#clientDetails').append(result);
+            if ($("#tableClientList tbody tr").length>0) {
+                $("#pagesize").removeAttr("disabled");
+            }
+            $('.loading').hide();
+
+        }, errorConsole)
+    }
+    $("#pagesize").on("change", function () {
+        $('#hdnPagesize').val(this.value);
+        bindClientSearchDetail();
+    });
+
+    $(document).on("click", "a[data-control='paging']", function () {
+        $('.loading').show();
+        var url = baseurl + $(this).data("url");
+        var pageSize = $(this).data("pagesize");
+        var selectedPageIndex = $(this).data("page-index");
+        searchclient(selectedPageIndex, pageSize);
+
+    });
+
+    //function refineResult() {
+    //    var refineText = $("#search").val();
+    //    if (refineText != undefined && refineText != "") {
+    //        $.each($("#clientDetails tbody tr"), function () {
+    //            if ($(this).text().toLowerCase().indexOf(refineText.toLowerCase()) === -1)
+    //                $(this).hide();
+    //            else {
+    //                $(this).show();
+    //            }
+    //        });
+    //    }
+    //}
+
+    //function showTableData() {
+    //    var pagesize = $("#pagesize").val();
+    //    $("#clientDetails tbody tr").slice(0, pagesize).show();
+    //    $("#clientDetails tbody tr").slice(pagesize, $("tbody tr").length).hide();
+
+    //}
+
+    //$("#search").on("keyup", function () {
+    //    showTableData();
+    //});
+
+    //function copytoclipboard(e) {
+    //    debugger
+    //    var textToCopy = $(".table-wrap");
+    //    var textBox = $("<input>");
+    //    textBox.val(textToCopy[0].innerText);
+    //    $('body').append(textBox);
+    //    textBox.select();
+    //    document.execCommand('copy');
+    //    alert("Copied the text: " + textBox.val());
+    //}
+
+    //function copytoclipboard() {
+    //    var rows = "";
+    //    var cols = "";
+    //    $("table.table tr").each(function () {
+    //        cols = "";
+    //        $(this).find("td,th").each(function () {
+    //            cols += $(this).text() + "\t";
+    //            //alert(cols);
+    //        });
+    //        rows += cols + "\n";
+    //    });
+
+    //    var textBox = $("<textarea>");
+    //    textBox.text(rows);
+    //    $('body').append(textBox);
+    //    textBox.select();
+
+    //    document.execCommand('copy');
+    //}
+
+</script>
+    <!-- Ends here-->
+    <!--start delete popup -->
+    <div>
+        <div class="wrap-light-box deleteCommon">
+            <div class="overlay"></div>
+            <div class="lb-container deleteConfirmation deleteConfirm" style="margin-top: -135.5px;">
+                <div class="row lb-dairy-note">
+                    <div class="col-12">
+                        <div class="grid-box headingBorder">
+                            <div class="confirm popupConfrimation">
+                                <figure class="error">  <img src="/Content/images/icons/error.gif" width="60" alt=" error"></figure>
+                                <p>
+                                    This aspect will be removed from the List. Confirm To Remove.
+                                </p>
+                                <div class="bookingButtons">
+                                    <button class="btn yes" id="confiming" type="button" onclick="">YES</button>
+                                    <a href="javascript:void(0)" onclick="closeForm()" class="btn no popup-close">NO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:void(0)" class="lb-close"> <img src="/Content/images/icons/cross.svg" alt=" cross"></a>
+            </div>
+        </div>
+
+        <div class="wrap-light-box ">
+            <div class="overlay"></div>
+            <div class="lb-container delete deleteSuccess" style="margin-top: -125px;">
+                <div class="row lb-dairy-note">
+                    <div class="col-12">
+                        <div class="grid-box headingBorder">
+                            <div class="confirm popupDeleteConfrimation">
+                                <figure class="check">  <img src="/Content/images/icons/check.gif" width="52" alt=" error"></figure>
+                                <h2>
+                                    Deleted
+                                </h2>
+                                <p>The data has been deleted.</p>
+                                <div class="bookingButtons">
+                                    <button type="button" class="btn popup-close"> Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+    <!--end delete popup -->
+    <!-- start footer-->
+    <footer>
+        <div class="container main-container">
+            <div class="flex-footer">
+                <div class="col-3 col-sm-6 col-xs-12 mmb-12 contact-detail">
+                    <h2>Contact us</h2>
+                    <ul>
+                        <li><img src="/Content/images/icons/phone-footer.svg" alt=" "> 020 7190 9988</li>
+                        <li class="white-anchor"><a href="mailto:admin@protectedtrustservices.com" title=""><img src="/Content/images/icons/email-footer.svg" alt=" "> admin@protectedtrustservices.com</a></li>
+                        <li class="white-anchor"><a href="http://www.protectedtrustservices.com" title="" target="_blank">www.protectedtrustservices.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-3 col-sm-6 col-xs-12 mmb-12 address-footer">
+                    <h2>Address</h2>
+                    <ul>
+                        <li> <img src="/Content/images/icons/map-footer.svg" alt=" "> Protected Trust Services </li>
+                        <li>307-315 Holdenhurst Road</li>
+                        <li>Bournemouth</li>
+                        <li>Dorset  BH8 8BX</li>
+                    </ul>
+
+                </div>
+                <div class="col-3 col-sm-6 col-xs-12 open-hours">
+                    <h2>Map Location</h2>
+                    <div class="map-footer">
+                        <div class="" style="min-height:160px;background:#F3F6FB;max-width:220px">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 col-sm-6 col-xs-12 open-hours">
+                    <h2>Opening Hours (GMT)</h2>
+                    <ul>
+                        <li><span>Monday:</span> <span>09.00am - 5.30pm</span></li>
+                        <li><span>Tuesday:</span> <span>09.00am - 5.30pm</span></li>
+                        <li><span>Wednesday:</span> <span>09.00am - 5.30pm</span></li>
+                        <li><span>Thursday:</span> <span>09.00am - 5.30pm</span></li>
+                        <li><span>Friday</span> <span>09.00am - 5.30pm</span></li>
+                        <li><span class="bank-off">UK Bank Holidays:</span> <span>closed</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="pts-sub-footer">
+            <div class="container main-container">
+                <p>© 2020 Protected Trust Services Limited - Registered Number - 06181223 - Release 2020 Version 03.01.01</p>
+            </div>
+
+        </div>
+    </footer>
+    <!-- start end-->
+    <!-- jQuery -->
+
+
+
+<script>
+    $('.popup-close').click(function () {
+        $('.lb-container').removeClass('active');
+        $('.wrap-light-box .overlay').hide();
+        location.reload();
+    });
+    $(function () {
+        //   logOut();
+$(".menu-btn").click(function (e) {
+            e.preventDefault()
+            $(".nav").slideToggle();
+        })
+        $(".logout").click(function (e) {
+            e.preventDefault()
+            ajaxPostJsonWithToken("/Account/Logout", null, singOutSucess, singOutError)
+        })
+
+    })
+   
+</script>
+
+
+
+
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><script async="" charset="UTF-8" src="https://embed.tawk.to/_s/v4/app/61adcafd0e1/languages/en.js"></script></body></html>
