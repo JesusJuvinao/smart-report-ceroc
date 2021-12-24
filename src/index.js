@@ -125,8 +125,22 @@ async function doWebScraping() {
         const NetTotal = 'body > div > table:nth-child(5) > tbody > tr:nth-child(4) > td'
         const NetTotal2 = 'body > div > table:nth-child(5) > tbody > tr:nth-child(4) > th'
         Contents['NetTotal'] = await newPage.$eval(NetTotal ? NetTotal : NetTotal2, text => text ? text.textContent.trim() : '');
-        const GranTotal = 'body > div > table:nth-child(5) > tbody > tr:nth-child(7) > th'
+        const GranTotal = 'body > div > table:nth-child(5) > tbody > tr:nth-child(6) > th'
         const GranTotal2 = 'body > div > table:nth-child(5) > tbody > tr:nth-child(6) > th'
+        const selectors = ['body > div > table:nth-child(5) > tbody > tr:nth-child(6) > th', 'body > div > table:nth-child(5) > tbody > tr:nth-child(6) > th'];
+        
+        const jsHandle = await newPage.waitForFunction((selectors) => {
+            console.log(selectors)
+          for (const selector of selectors) {
+            if (document.querySelector(selector) !== null) {
+              return selector;
+            }
+          }
+          return false;
+        }, {}, selectors);
+        
+        const selector = await jsHandle.jsonValue();
+        console.log(selector)
         Contents['GrandTotal'] = await newPage.$eval(GranTotal ? GranTotal : GranTotal2, text => text.textContent);
         // --- UserDetails---
         UserDetails['FirstName'] = await newPage.$eval('body > div > table:nth-child(7) > tbody > tr:nth-child(2) > td:nth-child(2)', text => text.textContent);
