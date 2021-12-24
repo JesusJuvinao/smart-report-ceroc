@@ -117,7 +117,7 @@ async function doWebScraping() {
         await newPage.goto(link);
         // newPage.waitForNavigation({ waitUntil: 'networkidle2' }),
         newPage.waitForSelector('body > div > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(2)'),
-            dataCosMod['CosMod'] = await newPage.$eval('body > div > table:nth-child(3) > tbody > tr.header1 > th', text => text.textContent.replace(/\D/gi, '').substring(0, 3));
+        dataCosMod['CosMod'] = await newPage.$eval('body > div > table:nth-child(3) > tbody > tr.header1 > th', text => text.textContent.replace(/\D/gi, '').substring(0, 3));
         dataCosMod['Status'] = await newPage.$eval('body > div > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(2)', text => text.textContent);
         dataCosMod['Status'] = await newPage.$eval('body > div > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(2)', text => text.textContent);
         dataCosMod['Created'] = await newPage.$eval('body > div > table:nth-child(3) > tbody > tr:nth-child(3) > td:nth-child(2)', text => text.textContent);
@@ -130,17 +130,17 @@ async function doWebScraping() {
         // const Product = 'body > div > table:nth-child(5) > tbody > tr.dark > td.productName'
         // Contents['Product'] = await newPage.$eval( !Product ? '' : Product, text => text.textContent);
         // Contents['Option'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(2)', text => text.textContent);
-        Contents['Price'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(3)', text => text.textContent);
-        Contents['Qty'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(4)', text => text.textContent);
-        Contents['Subtotal'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(5)', text => text.textContent);
+        // Contents['Price'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(3)', text => text.textContent);
+        // Contents['Qty'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(4)', text => text.textContent);
+        // Contents['Subtotal'] = await newPage.$eval('body > div > table:nth-child(5) > tbody > tr.dark > td:nth-child(5)', text => text.textContent);
         // ----Query selector NetTotal
         // const NetTotal = 'body > div > table:nth-child(5) > tbody > tr:nth-child(4) > td'
         // const NetTotal2 = 'body > div > table:nth-child(5) > tbody > tr:nth-child(4) > th'
         // Contents['NetTotal'] = await newPage.$eval(NetTotal ? NetTotal : NetTotal2, text => text ? text.textContent.trim() : '');
 
-        // const GranTotal = 'body > div > table:nth-child(5) > tbody > tr:nth-last-child(1) > th'
-        // const GranTotal2 = 'body > div > table:nth-child(5) > tbody > tr:nth-last-child(1) > th'
-        // Contents['GrandTotal'] = await newPage.$eval(GranTotal ? GranTotal : GranTotal2, text => text.textContent);
+        const GranTotal = 'body > div > table:nth-child(5) > tbody > tr:nth-last-child(1) > th'
+        const GranTotal2 = 'body > div > table:nth-child(5) > tbody > tr:nth-last-child(1) > th'
+        Contents['GrandTotal'] = await newPage.$eval(GranTotal ? GranTotal : GranTotal2, text => text.textContent);
         // --- UserDetails---
         UserDetails['FirstName'] = await newPage.$eval('body > div > table:nth-child(7) > tbody > tr:nth-child(2) > td:nth-child(2)', text => text.textContent);
         UserDetails['LastName'] = await newPage.$eval('body > div > table:nth-child(7) > tbody > tr:nth-child(3) > td:nth-child(2)', text => text.textContent);
@@ -191,9 +191,9 @@ async function doWebScraping() {
     for (let i = 0, totalUrls = urls.length; i < totalUrls; i++) {
         const array = await pagePromise(urls[i])
         // console.log(array, 'oooooooooooooooooooooooo')
-        // DbConnect(array)
-        // .then(console.log)
-        // .catch(console.error)
+        DbConnect(array)
+        .then(console.log)
+        .catch(console.error)
         // .finally(() => client.close());
     }
     const html = await page.content()
